@@ -9,7 +9,9 @@ const fetchArticle = async () => {
     }
     const article = await response.json();
     createArticles(article);
-  } catch (error) {}
+  } catch (error) {
+    console.log(`erreur ${error}`);
+  }
 };
 
 fetchArticle();
