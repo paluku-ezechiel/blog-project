@@ -9,6 +9,7 @@ const createArticles = (articles) => {
     return createArticleElements(article);
   });
 
+  if(!articlesContainer) return
   articlesContainer.replaceChildren(...articleDOM);
 };
 
@@ -26,9 +27,6 @@ const fetchArticle = async () => {
 };
 
 const createArticleElements = (article) => {
-//   const articleContainer = document.createElement("div");
-//   articleContainer.classList.add("articles-container");
-
   const articleDiv = document.createElement("article");
   articleDiv.classList.add("article");
 
