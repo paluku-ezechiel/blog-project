@@ -124,7 +124,14 @@ const createArticleElements = (article) => {
   articleActions.classList.add("article-actions");
 
   const btnDanger = document.createElement("button");
-  
+  btnDanger.type = "button";
+  btnDanger.classList.add("btn", "btn-danger");
+  btnDanger.textContent = "Supprimer";
+
+  const btnPrimary = document.createElement("button");
+  btnPrimary.type = "button";
+  btnPrimary.classList.add("btn", "btn-primary");
+  btnDanger.textContent = "Modifier";
 
 };
 
