@@ -7,9 +7,11 @@ const errorsElement = document.querySelector("#errors");
 const formIsValid = (article) => {
   let errors = [];
   const author = article.author.trim();
+  const img = article.img.trim();
   const category = article.category.trim();
+  const title = article.title.trim();
   const content = article.content.trim();
-  if (!author || !category || !content) {
+  if (!author || !img || !category || !title || !content) {
     errors.push("Vous devez renseigner tous les champs");
   }
 
