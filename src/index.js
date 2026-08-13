@@ -9,8 +9,29 @@ const createArticles = (articles) => {
     return createArticleElements(article);
   });
 
-  if(!articlesContainer) return
+  if (!articlesContainer) return;
   articlesContainer.replaceChildren(...articleDOM);
+  const deleteButtons = articlesContainer.querySelectorAll(".btn-danger");
+  if (deleteButtons) {
+    deleteButtons.forEach((button) => {
+      button.addEventListener("click", async (event) => {
+        try {
+          const articleId = event.currentTarget.dataset.id;
+          const responseDel = await fetch(`https://restapi.fr/api/article/${articleId}`, {
+              method: "DELETE",
+            }
+          );
+          if(!responseDel.ok){
+              throw new Error(`Erreur HTTP (${response.status})`);
+          }
+          const body = await responseDel.json();
+          fetchArticle(body);
+        } catch (error) {
+            console.log('e : ', e);
+        }
+      });
+    });
+  }
 };
 
 const fetchArticle = async () => {
@@ -40,7 +61,7 @@ const createArticleElements = (article) => {
 
   const articleAuthor = document.createElement("p");
   articleAuthor.classList.add("article-author");
-  articleAuthor.textContent = `${article.author}`;
+  articleAuthor.textContent = `${article.author} - ${article.category}`;
 
   const articleContent = document.createElement("p");
   articleContent.classList.add("article-content");
@@ -53,11 +74,12 @@ const createArticleElements = (article) => {
   btnDanger.type = "button";
   btnDanger.classList.add("btn", "btn-danger");
   btnDanger.textContent = "Supprimer";
-
+  btnDanger.setAttribute("data-id", `${article._id}`);
   const btnPrimary = document.createElement("button");
   btnPrimary.type = "button";
   btnPrimary.classList.add("btn", "btn-primary");
   btnPrimary.textContent = "Modifier";
+  btnPrimary.setAttribute("data-id", `${article._id}`);
   articleDiv.append(
     img,
     articleTitle,
