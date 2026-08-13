@@ -23,35 +23,35 @@ header {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  .header-brand{
+  .header-brand {
     font-size: 4rem;
     font-weight: 700;
   }
 
-  a{
+  a {
     color: white;
   }
 
-  ul{
+  ul {
     display: flex;
-    li{
-      .header-nav{
+    li {
+      .header-nav {
         font-size: 2rem;
         padding: 0 1rem;
       }
 
-      .active{
+      .active {
         text-decoration: underline;
         font-weight: 700;
       }
     }
   }
-
 }
 
 .content {
   grid-area: content;
   padding: 2rem;
+  background: var(--divider);
 }
 
 footer {
