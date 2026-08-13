@@ -1,0 +1,48 @@
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  form {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    width: 100%;
+    padding: 4rem;
+    box-shadow: var(--box-shadow);
+    border-radius: 3px;
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      label{
+          font-size: 1.8rem;
+          color: var(--accent);
+          font-weight: 700;
+          margin-bottom: 1rem;
+      }
+
+      input, textarea{
+        padding: 1rem;
+        outline: none;
+        border: 1px solid var(--divider);
+        border-radius: 3px;
+        &:focus{
+          border-color: var(--accent);
+        }
+      }
+
+      textarea {
+        min-height: 20rem;
+      }
+    }
+
+    .form-btn-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      .btn{
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}
