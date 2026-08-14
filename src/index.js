@@ -11,23 +11,26 @@ const createArticles = (articles) => {
 
   if (!articlesContainer) return;
   articlesContainer.replaceChildren(...articleDOM);
+
   const deleteButtons = articlesContainer.querySelectorAll(".btn-danger");
   if (deleteButtons) {
     deleteButtons.forEach((button) => {
       button.addEventListener("click", async (event) => {
         try {
           const articleId = event.currentTarget.dataset.id;
-          const responseDel = await fetch(`https://restapi.fr/api/article/${articleId}`, {
+          const responseDel = await fetch(
+            `https://restapi.fr/api/article/${articleId}`,
+            {
               method: "DELETE",
             }
           );
-          if(!responseDel.ok){
-              throw new Error(`Erreur HTTP (${response.status})`);
+          if (!responseDel.ok) {
+            throw new Error(`Erreur HTTP (${responseDel.status})`);
           }
           const body = await responseDel.json();
-          fetchArticle(body);
+          fetchArticle();
         } catch (error) {
-            console.log('e : ', e);
+          console.log("erreur : ", error);
         }
       });
     });
@@ -75,11 +78,13 @@ const createArticleElements = (article) => {
   btnDanger.classList.add("btn", "btn-danger");
   btnDanger.textContent = "Supprimer";
   btnDanger.setAttribute("data-id", `${article._id}`);
+
   const btnPrimary = document.createElement("button");
   btnPrimary.type = "button";
   btnPrimary.classList.add("btn", "btn-primary");
   btnPrimary.textContent = "Modifier";
   btnPrimary.setAttribute("data-id", `${article._id}`);
+
   articleDiv.append(
     img,
     articleTitle,
@@ -87,6 +92,7 @@ const createArticleElements = (article) => {
     articleContent,
     articleActions
   );
+  
   articleActions.append(btnDanger, btnPrimary);
 
   return articleDiv;
