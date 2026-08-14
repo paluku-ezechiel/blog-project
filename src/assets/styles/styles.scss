@@ -31,9 +31,12 @@ header {
   a {
     color: white;
   }
-
+  .header-menu {
   ul {
     display: flex;
+    @include xs {
+      display: none;
+    }
     li {
       .header-nav {
         font-size: 2rem;
@@ -46,6 +49,17 @@ header {
       }
     }
   }
+
+  .header-menu-icon{
+    display: none;
+    font-size: 3rem;
+    color: white;
+    @include xs {
+      display: block;
+    }
+  }
+
+}
 }
 
 .content {
