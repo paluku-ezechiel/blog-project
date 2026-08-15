@@ -14,6 +14,7 @@ const createArticles = (articles) => {
   articlesContainer.replaceChildren(...articleDOM);
 
   const deleteButtons = articlesContainer.querySelectorAll(".btn-danger");
+  
   const updateButtons = articlesContainer.querySelectorAll(".btn-primary");
   updateButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
