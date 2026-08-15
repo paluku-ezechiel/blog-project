@@ -3,7 +3,11 @@ import "./form.scss";
 
 const form = document.querySelector("form");
 const errorsElement = document.querySelector("#errors");
+const btnCancel = document.querySelector(".btn-secondary");
 
+btnCancel.addEventListener("click", () => {
+  location.assign("../index.html");
+});
 const formIsValid = (article) => {
   let errors = [];
   const author = article.author.trim();
@@ -13,6 +17,8 @@ const formIsValid = (article) => {
   const content = article.content.trim();
   if (!author || !img || !category || !title || !content) {
     errors.push("Vous devez renseigner tous les champs");
+  }else{
+    errors = [];
   }
 
   if (content && content.length < 20) {
@@ -48,12 +54,9 @@ if (form) {
           },
         });
 
-        if (!response.ok) {
-          throw new Error(`La création à échouer (${response.status})`);
+        if (response.status < 299) {
+          location.assign("../index.html");
         }
-        const saveArticle = await response.json();
-        console.log(saveArticle);
-        form.reset();
       }
     } catch (e) {
       console.log(`Erreur ${e}`);

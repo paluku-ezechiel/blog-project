@@ -22,12 +22,12 @@
           <h2 class="title-underline">Ajouter un article</h2>
           <div class="form-group">
             <label for="author">Auteur</label>
-            <input id="author" type="text" name="author" required/>
+            <input id="author" type="text" name="author" required />
           </div>
 
           <div class="form-group">
             <label for="img">Image de profil</label>
-            <input id="img" type="url" name="img" required/>
+            <input id="img" type="url" name="img" required />
           </div>
 
           <div class="form-group">
@@ -40,15 +40,19 @@
             <input id="title" type="text" name="title" required />
           </div>
 
-
           <div class="form-group">
             <label for="content">Article</label>
             <textarea id="content" name="content" required></textarea>
           </div>
-          <ul id="errors" class="text-error" aria-live="polite" aria-atomic="true"></ul>
+          <ul
+            id="errors"
+            class="text-error"
+            aria-live="polite"
+            aria-atomic="true"
+          ></ul>
           <div class="form-btn-container">
-            <button class="btn btn-secondary">Annuler</button>
-            <button class="btn btn-primay">Sauvegarder</button>
+            <button class="btn btn-secondary" type="button">Annuler</button>
+            <button class="btn btn-primay" type="submit">Sauvegarder</button>
           </div>
         </form>
       </div>

@@ -1,4 +1,5 @@
 import "./assets/styles/styles.scss";
+
 import "./index.scss";
 
 const articlesContainer = document.querySelector(".articles-container");
@@ -13,6 +14,15 @@ const createArticles = (articles) => {
   articlesContainer.replaceChildren(...articleDOM);
 
   const deleteButtons = articlesContainer.querySelectorAll(".btn-danger");
+  const updateButtons = articlesContainer.querySelectorAll(".btn-primary");
+  updateButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const articleId = event.currentTarget.dataset.id;
+      if(articleId){
+        location.assign(`./form/form.html?id=${articleId}`)
+      }
+    })
+  })
   if (deleteButtons) {
     deleteButtons.forEach((button) => {
       button.addEventListener("click", async (event) => {
@@ -64,7 +74,14 @@ const createArticleElements = (article) => {
 
   const articleAuthor = document.createElement("p");
   articleAuthor.classList.add("article-author");
-  articleAuthor.textContent = `${article.author} - ${article.category}`;
+  articleAuthor.textContent = `${article.author} - ${new Date(
+    article.createdAt
+  ).toLocaleDateString("fr-FR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  })}`;
 
   const articleContent = document.createElement("p");
   articleContent.classList.add("article-content");
@@ -92,7 +109,7 @@ const createArticleElements = (article) => {
     articleContent,
     articleActions
   );
-  
+
   articleActions.append(btnDanger, btnPrimary);
 
   return articleDiv;
