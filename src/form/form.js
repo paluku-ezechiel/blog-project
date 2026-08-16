@@ -21,14 +21,20 @@ const fillForm = (article) => {
 };
 
 const initForm = async () => {
-  const params = new URL(location.href);
-  articleId = params.searchParams.get("id");
-  if (articleId) {
-    const response = await fetch(`https://restapi.fr/api/article/${articleId}`);
-    if (response.status < 300) {
-      const article = await response.json();
-      fillForm(article);
+  try {
+    const params = new URL(location.href);
+    articleId = params.searchParams.get("id");
+    if (articleId) {
+      const response = await fetch(
+        `https://restapi.fr/api/article/${articleId}`
+      );
+      if (response.status < 300) {
+        const article = await response.json();
+        fillForm(article);
+      }
     }
+  } catch (error) {
+    console.log(`Erreur : ${error}`);
   }
 };
 
