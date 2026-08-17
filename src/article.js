@@ -115,14 +115,23 @@ const createArticles = () => {
 const displayArticles = (categoriesArr) => {
   const liElement = categoriesArr.map((categoryElement) => {
     const li = document.createElement("li");
-    li.innerHTML = `<li>${categoryElement[0]} ( <strong>${categoryElement[1]}</strong>)`;
-    li.addEventListener("click", () => {
-      filtrer = categoryElement[0];
-      liElement.forEach(li => {
-        li.classList.remove("active");
-      });
+    li.innerHTML = `${categoryElement[0]} ( <strong>${categoryElement[1]}</strong>)`;
+    if (categoryElement[0] === filtrer) {
       li.classList.add("active");
-      createArticles();
+    }
+    li.addEventListener("click", () => {
+      if (filtrer === categoryElement[0]) {
+        filtrer = null;
+        li.classList.remove("active");
+        createArticles();
+      } else {
+        filtrer = categoryElement[0];
+        liElement.forEach((li) => {
+          li.classList.remove("active");
+        });
+        li.classList.add("active");
+        createArticles();
+      }
     });
     return li;
   });
@@ -138,9 +147,11 @@ const createMenuCategories = () => {
     }
     return acc;
   }, {});
-  const categoriesArr = Object.keys(categories).map((category) => {
-    return [category, categories[category]];
-  });
+  const categoriesArr = Object.keys(categories)
+    .map((category) => {
+      return [category, categories[category]];
+    })
+    .sort((c1, c2) => c1[0].localeCompare(c2[0]));
   displayArticles(categoriesArr);
 };
 
