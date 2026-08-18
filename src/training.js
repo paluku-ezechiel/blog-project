@@ -60,6 +60,16 @@ const createArticles = (articles) => {
   if (!articleContainer) return;
   articleContainer.replaceChildren(...articleDOM);
 
+  const updateArticle = articleContainer.querySelectorAll(".btn-primary");
+  updateArticle.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const articleId = event.currentTarget.dataset.id;
+      if (articleId) {
+        location.assign(`./form/form.html?id=${articleId}`);
+      }
+    });
+  });
+
   const deleteArticle = articleContainer.querySelectorAll(".btn-danger");
   deleteArticle.forEach((button) => {
     button.addEventListener("click", async (event) => {
