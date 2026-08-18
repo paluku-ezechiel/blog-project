@@ -95,6 +95,14 @@ const createArticles = (articles) => {
   });
 };
 
+const createMenuCategories = (articles) => {
+  const articleArr = articles.reduce((acc, curr) => {
+    acc[curr.category] = acc[curr.category] ? acc[curr.category]++ : 1;
+    return acc;
+  }, {});
+  console.log(articleArr);
+};
+
 const fetchAllArticles = async () => {
   try {
     const response = await fetch("https://restapi.fr/api/article");
@@ -103,6 +111,7 @@ const fetchAllArticles = async () => {
     }
     const articles = await response.json();
     createArticles(articles);
+    createMenuCategories(articles);
   } catch (error) {
     console.log("Erreur : ", error);
   }
